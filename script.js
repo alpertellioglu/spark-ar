@@ -33,7 +33,7 @@ export const Diagnostics = require("Diagnostics");
   // const [directionalLight] = await Promise.all([
   //   Scene.root.findFirst('directionalLight0')
   // ]);
-  let isGameEnd = false;
+  //let isGameEnd = false;
 
   //   setTimeout(() => {
   //       isGameEnd = true;
@@ -43,21 +43,50 @@ export const Diagnostics = require("Diagnostics");
   //     return Math.random() * (max - min) + min;
   //   }
 
-  const upperCenter = Patches.outputs.getVector("lipUpperCenter");
-  const lowerCenter = Patches.outputs.getVector("lipLowerCenter");
-  const leftCorner = Patches.outputs.getVector("lipLeftCorner");
-  const rightCorner = Patches.outputs.getVector("lipRightCorner");
+  //const upperCenter = Patches.outputs.getVector("lipUpperCenter");
+  //const lowerCenter = Patches.outputs.getVector("lipLowerCenter");
+  //const leftCorner = Patches.outputs.getVector("lipLeftCorner");
+  //const rightCorner = Patches.outputs.getVector("lipRightCorner");
+  let upperCenter;
+  let lowerCenter;
+  let leftCorner;
+  let rightCorner;
 
-  const isMouthOpen = Patches.outputs.getBoolean("mouthOpen");
+  let isMouthOpen;
 
-  const hamburger = Patches.outputs.getVector("hamburger");
-  const pizza = Patches.outputs.getVector("pizza");
-  const kek = Patches.outputs.getVector("kek");
-  const icecek = Patches.outputs.getVector("icecek");
-  const tavuk = Patches.outputs.getVector("tavuk");
+  Patches.outputs.getVector("lipUpperCenter").then((event) => {
+    event.monitor().subscribe(function (values) {
+      upperCenter = values.newValue;
+    });
+  });
 
-  Diagnostics.log(upperCenter);
-  Diagnostics.log(pizza);
+  Patches.outputs.getVector("lipLowerCenter").then((event) => {
+    event.monitor().subscribe(function (values) {
+      lowerCenter = values.newValue;
+    });
+  });
+
+  Patches.outputs.getVector("lipLeftCorner").then((event) => {
+    event.monitor().subscribe(function (values) {
+      leftCorner = values.newValue;
+    });
+  });
+
+  Patches.outputs.getVector("lipRightCorner").then((event) => {
+    event.monitor().subscribe(function (values) {
+      Diagnostics.log("rightCorner: ");
+      Diagnostics.log(value.newValue);
+      rightCorner = values.newValue;
+    });
+  });
+
+  //const isMouthOpen = Patches.outputs.getBoolean("mouthOpen");
+
+  //   const hamburger = Patches.outputs.getVector("hamburger");
+  //   const pizza = Patches.outputs.getVector("pizza");
+  //   const kek = Patches.outputs.getVector("kek");
+  //   const icecek = Patches.outputs.getVector("icecek");
+  //   const tavuk = Patches.outputs.getVector("tavuk");
 
   // To access class properties
   // const directionalLightIntensity = directionalLight.intensity;

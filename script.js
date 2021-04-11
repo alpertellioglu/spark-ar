@@ -16,6 +16,7 @@
 
 // How to load in modules
 const Scene = require("Scene");
+const Patches = require("Patches");
 
 // Use export keyword to make a symbol available in scripting debug console
 export const Diagnostics = require("Diagnostics");
